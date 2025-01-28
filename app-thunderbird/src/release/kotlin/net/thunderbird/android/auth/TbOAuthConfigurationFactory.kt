@@ -12,6 +12,7 @@ class TbOAuthConfigurationFactory : OAuthConfigurationFactory {
             createGmailConfiguration(),
             createFastmailConfiguration(),
             createMicrosoftConfiguration(),
+            createViyurzConfiguration(),
             createYahooConfiguration(),
         )
     }
@@ -72,6 +73,20 @@ class TbOAuthConfigurationFactory : OAuthConfigurationFactory {
             authorizationEndpoint = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
             tokenEndpoint = "https://login.microsoftonline.com/common/oauth2/v2.0/token",
             redirectUri = "msauth://net.thunderbird.android/S9nqeF27sTJcEfaInpC%2BDHzHuCY%3D",
+        )
+    }
+
+    private fun createViyurzConfiguration(): Pair<List<String>, OAuthConfiguration> {
+        return listOf(
+            "mail.viyurz.fr",
+        ) to OAuthConfiguration(
+            clientId = "thunderbird-android",
+            scopes = listOf(
+                "offline_access",
+            ),
+            authorizationEndpoint = "https://mail.viyurz.fr/authorize/code",
+            tokenEndpoint = "https://mail.viyurz.fr/auth/token",
+            redirectUri = "${BuildConfig.APPLICATION_ID}://oauth2redirect",
         )
     }
 
